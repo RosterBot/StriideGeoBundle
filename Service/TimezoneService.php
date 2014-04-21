@@ -77,7 +77,7 @@ class TimezoneService
   public function getTimezoneByLatLng($lat, $lng)
   {
     $this->logger->info(sprintf("Looking up timezone by lat/long ...(%s/%s)", $lat, $lng));
-    $payload = $this->rest_client->get(sprintf("http://www.earthtools.org/timezone/%s/%s", $lat, $lng));
+    $payload = $this->rest_client->get(sprintf("https://www.earthtools.org/timezone/%s/%s", $lat, $lng));
     $timezone = new SimpleXMLElement($payload);
 
     if (!is_null($timezone))

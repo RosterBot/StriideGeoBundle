@@ -39,7 +39,7 @@ class GoogleGeoService
 
     try
     {
-      $payload = $this->rest_client->get(sprintf("http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=%s", $address));
+      $payload = $this->rest_client->get(sprintf("https://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=%s", $address));
       $results = json_decode($payload, true);
       return $results;
     }

@@ -89,7 +89,7 @@ class GeoService
     
     try
     {
-      $payload = $this->rest_client->get(sprintf("http://freegeoip.net/json/%s", $ip));
+      $payload = $this->rest_client->get(sprintf("https://freegeoip.net/json/%s", $ip));
     }
     catch(\Exception $e)
     {

@@ -13,6 +13,6 @@ class GoogleController extends Controller
    */
   public function apiAction()
   {
-    return new Response('<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>');
+    return new Response('<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>');
   }
 }
