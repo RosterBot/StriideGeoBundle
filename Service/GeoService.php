@@ -152,12 +152,17 @@ class GeoService
 
     }
 
-    public function getTimezoneFromLatLng($lat, $lng)
+    public function getTimezoneFromLatLng($lat, $lng, $timestamp = null)
     {
         $this->logger->info(sprintf("Looking up lat lng... (%s, %s)", $lat, $lng));
 
+        if(!$timestamp)
+        {
+            $timestamp = time();
+        }
+
         try {
-            $payload = $this->rest_client->get(sprintf("https://maps.googleapis.com/maps/api/timezone/json?location=%s,%s&key=%s", $lat, $lng, $this->googleApiKey));
+            $payload = $this->rest_client->get(sprintf("https://maps.googleapis.com/maps/api/timezone/json?location=%s,%s&key=%s&timestamp=%s", $lat, $lng, $this->googleApiKey, $timestamp));
             $results = json_decode($payload, true);
             return $results;
         } catch (\Exception $e) {
