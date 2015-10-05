@@ -15,6 +15,7 @@ services:
       - [setLogger, [@logger]]
       - [setEntityManager, [@doctrine.orm.entity_manager]]
       - [setRestClient, [@striide_rest.rest.service]]
+      - [setGoogleApiKey, [%google_api_server_key%]]
   striide_geo.timezone.service:
     class: Striide\GeoBundle\Service\TimezoneService
     arguments: [@logger]

@@ -44,14 +44,18 @@ class GeoService
   {
     $this->rest_client = $client;
   }
-  
+
+
+  private $googleApiKey;
+
+
   /**
    * queue the record to harvest
    */
   public function queueHarvest($ip)
   {
     $this->logger->info(__METHOD__,array($ip));
-    
+
     // only harvest if we need to
     $geoip = $this->em->getRepository('StriideGeoBundle:GeoIP')->findOneByIp($ip);
     if(!empty($geoip))
@@ -141,7 +145,7 @@ class GeoService
 
     try
     {
-      $payload = $this->rest_client->get(sprintf("http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=%s", $address));
+      $payload = $this->rest_client->get(sprintf("https://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=%s&key=%s", $address, $this->googleApiKey));
       $results = json_decode($payload, true);
       return $results;
     }
@@ -242,5 +246,13 @@ class GeoService
       $array[$code] = $name;
     }
     return $array;
+  }
+
+  /**
+   * @param mixed $googleApiKey
+   */
+  public function setGoogleApiKey($googleApiKey)
+  {
+    $this->googleApiKey = $googleApiKey;
   }
 }

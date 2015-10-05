@@ -20,6 +20,12 @@ class Configuration implements ConfigurationInterface
     // Here you should define the parameters that are allowed to
     // configure your bundle. See the documentation linked above for
     // more information on that topic.
+    $rootNode->children()
+        ->scalarNode('google_api_server_key')
+        ->isRequired()
+        ->cannotBeEmpty()
+        ->defaultValue('your_server_side_google_api_key_here');
+
     return $treeBuilder;
   }
 }
