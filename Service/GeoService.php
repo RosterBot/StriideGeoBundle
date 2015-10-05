@@ -152,6 +152,20 @@ class GeoService
 
     }
 
+    public function getTimezoneFromLatLng($lat, $lng)
+    {
+        $this->logger->info(sprintf("Looking up lat lng... (%s, %s)", $lat, $lng));
+
+        try {
+            $payload = $this->rest_client->get(sprintf("https://maps.googleapis.com/maps/api/timezone/json?location=%s,%s&key=%s", $lat, $lng, $this->googleApiKey));
+            $results = json_decode($payload, true);
+            return $results;
+        } catch (\Exception $e) {
+            return null;
+        }
+
+    }
+
     /**
      *
      */
